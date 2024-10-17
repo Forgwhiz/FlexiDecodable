@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = 'FlexiDecodable'
-  s.version          = '0.0.4'
+  s.version          = '0.0.5'
   s.summary          = 'A flexible Decodable implementation that supports type coercion with fallback'
   s.description      = 'FlexiDecodable is a flexible Swift package for decoding various types with fallback logic (String, Int, Float, etc.)'
   s.homepage         = 'https://github.com/Forgwhiz/FlexiDecodable'
