@@ -107,20 +107,14 @@ While the basic functionality works out of the box for `String`, `Int`, `Float`,
 
 ### Supported Types
 
-#### String
-- Can be converted from `String`, `Int`, `Float`, `Double`.
+| Command | Description |
+| --- | --- |
+| `String` | Can be converted from `String`, `Int`, `Float`, `Double` |
+| `Int` | Can be converted from `String`, `Float`, `Double` |
+| `Float` | Can be converted from `String`, `Int`, `Double` |
+| `Double` | Can be converted from `String`, `Int`, `Float` |
+| `Bool` | Can be converted from `String` ("true"/"false") or `Int` (1 for `true`, 0 for `false`) |
 
-#### Int
-- Can be converted from `String`, `Float`, `Double`.
-
-#### Float
-- Can be converted from `String`, `Int`, `Double`.
-
-#### Double
-- Can be converted from `String`, `Int`, `Float`.
-
-#### Bool
-- Can be converted from `String` ("true"/"false") or `Int` (1 for `true`, 0 for `false`).
 
 ### Customizing for Future Types
 
