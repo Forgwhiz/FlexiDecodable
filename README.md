@@ -1,10 +1,21 @@
+![Static Badge](https://img.shields.io/badge/Platform-iOS-blue)
+![Static Badge](https://img.shields.io/badge/iOS-13.0%2B-orange)
+![Static Badge](https://img.shields.io/badge/SwiftPM-Compatible-green)
+![Static Badge](https://img.shields.io/badge/pod-v0.0.6-blue)
+![Static Badge](https://img.shields.io/badge/Licence-MIT-black)
+![Static Badge](https://img.shields.io/badge/OpenSource-red)
+![Static Badge](https://img.shields.io/badge/Swift%20Tests-passing-green?logo=github&link=image)
+
+
 # FlexiDecodable for Swift
 
 **FlexiDecodable** is a lightweight, flexible, and easy-to-use library for decoding JSON data into Swift types, providing **type coercion** with fallback support. It allows you to seamlessly handle different data types coming from a JSON response and automatically convert them to the expected types in your model. 
 
 This library is especially useful when dealing with API responses that may contain multiple types for a single field (e.g., `String`, `Int`, `Float`, `Double`, etc.), making it easier to work with inconsistent data structures.
 
-[!IMPORTANT] The current version is still in development. There may be breaking changes in version updates until version 1.0.
+
+> [!IMPORTANT]
+> The current version is still in development. There may be breaking changes in version updates until version 1.0.
 
 ## Features:
 
@@ -14,48 +25,26 @@ This library is especially useful when dealing with API responses that may conta
 - **Easy Integration**: Seamless integration with your existing Swift codebase using the standard `Decodable` protocol.
 - **Customizable for Future Types**: Easily extendable to support other types like `Date`, `URL`, etc.
 
-[!CAUTION] 🚨 Breaking changes:
-- **Version 0.1.0**: Initial release with support for `String`, `Int`, `Float`, `Double`, and `Bool` coercion.
-
-## Demo
-
-Usage of the library is simple and can be seen in the example provided below:
-
-```swift
-struct WelcomeModel: FlexiDecodable {
-    let id: String?
-    let title: String
-    let type: Int?
-    let category: Float?
-}
-
-let jsonData = """
-{
-    "id": "123",
-    "title": "Welcome",
-    "type": "1",
-    "category": "45.67"
-}
-""".data(using: .utf8)!
-
-do {
-    let decodedModel = try JSONDecoder().decode(WelcomeModel.self, from: jsonData)
-    print(decodedModel)  // Outputs: WelcomeModel(id: "123", title: "Welcome", type: 1, category: 45.67)
-} catch {
-    print("Decoding failed: \(error)")
-}
-```
+## Supported Datatypes :
+**Version 0.0.6**: This release with support for `String`, `Int`, `Float`, `Double`, and `Bool` coercion.
 
 ## Installation
 
+FlexiDecodable is available through [Swift Package Manager](https://swiftpackageindex.com/Forgwhiz/FlexiDecodable)
+
+## Features <a id='ssFeatures'></a>
+
 ### Swift Package Manager
 
-Add the following to your `Package.swift`:
+- In Xcode select:
 
-```swift
-dependencies: [
-    .package(url: "https://github.com/your-username/FlexiDecodable.git", from: "1.0.0")
-]
+```ruby
+File > Swift Packages > Add Package Dependency...
+```
+- Then paste this URL:
+
+```ruby
+https://github.com/Forgwhiz/FlexiDecodable.git
 ```
 
 ### Cocoapods
@@ -63,7 +52,7 @@ dependencies: [
 Add the following line to your `Podfile`:
 
 ```ruby
-pod 'FlexiDecodable', '~> 1.0.0'
+pod 'FlexiDecodable', '~> 0.0.6'
 ```
 
 Then run:
@@ -78,30 +67,35 @@ or
 pod update
 ```
 
-## Usage
+
+## Demo
 
 ### Basic Usage
 
-Here's how to use **FlexiDecodable** in your Swift model:
+Usage of the library is simple and can be seen in the example provided below. Here's how to use **FlexiDecodable** in your Swift model:
 
 ```swift
-struct MyModel: FlexiDecodable {
+struct WelcomeModel: FlexiDecodable {
     let id: String?
+    let title: String
+    let type: Int?
+    let category: Float?
     let isActive: Bool?
-    let amount: Float?
 }
 
 let jsonData = """
 {
-    "id": "456",
+    "id": "123",
+    "title": "Welcome",
+    "type": "1",
+    "category": "45.67",
     "isActive": "true",
-    "amount": "99.99"
 }
 """.data(using: .utf8)!
 
 do {
-    let model = try JSONDecoder().decode(MyModel.self, from: jsonData)
-    print(model)  // Outputs: MyModel(id: "456", isActive: true, amount: 99.99)
+    let decodedModel = try JSONDecoder().decode(WelcomeModel.self, from: jsonData)
+    print(decodedModel)  // Outputs: WelcomeModel(id: "123", title: "Welcome", type: 1, category: 45.67, isActive: true)
 } catch {
     print("Decoding failed: \(error)")
 }
@@ -131,15 +125,6 @@ While the basic functionality works out of the box for `String`, `Int`, `Float`,
 ### Customizing for Future Types
 
 You can extend the library to support additional types (like `Date`, `URL`, etc.) by adding new `decodeWithFallback` functions for each type.
-
-## Options
-
-You can extend the `decodeWithFallback` method to handle more types in the future as needed. Right now, it supports:
-
-- **String**: Converts from `String`, `Int`, `Float`, `Double`.
-- **Int**: Converts from `String`, `Float`, `Double`.
-- **Float**: Converts from `String`, `Int`, `Double`.
-- **Bool**: Converts from `String` ("true"/"false") or `Int` (1 for `true`, 0 for `false`).
 
 ## License
 
